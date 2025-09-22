@@ -1,3 +1,5 @@
+#Divides the raw file to chunks using unstructured library
+
 # foundry/utils.py
 import io
 from unstructured.partition.auto import partition
