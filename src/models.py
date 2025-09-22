@@ -1,4 +1,5 @@
-#This defines our job table 
+#Defines the Job model to track the state, status, and results of data processing tasks.
+
 
 from sqlalchemy import Column, Integer, String, DateTime, Text
 from .database import Base
