@@ -1,0 +1,14 @@
+langgraph
+fastapi
+uvicorn[standard]
+unstructured[pdf,docx]
+pandas
+openpyxl
+google-generativeai
+celery
+redis
+sqlalchemy
+alembic
+asyncpg #for postgre
+aiosqlite
+
