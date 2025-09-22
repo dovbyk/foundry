@@ -1,5 +1,6 @@
-import json
+#Defines the output schemas for each recipe 
 
+import json
 
 QNA_SCHEMA = {
     "type": "object",
@@ -23,6 +24,7 @@ SUMMARIZATION_SCHEMA = {
             "type": "string",
             "description": "A brief, highly condensed summary of the key points in the text."
         },
+        
         "original_text_preview": {
             "type": "string",
             "description": "The first 50 characters of the original text for reference."
