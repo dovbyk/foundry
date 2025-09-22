@@ -1,3 +1,5 @@
+#Sets up Celeray background worker that runs the entire LangGraph pipeline asynchronously
+
 from celery import Celery
 import asyncio
 import os 
