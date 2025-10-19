@@ -28,9 +28,6 @@ async def create_dataset_endpoint(
     task_id = str(uuid.uuid4())
     job = Job(task_id=task_id, status="PENDING")
     
-    # In a real app, you'd save recipe to the job model too
-    # For now, we'll assume recipe is part of the task_id or handled elsewhere
-
     # Save uploaded file(s) to a temporary directory named after the task_id
     job_upload_dir = os.path.join(UPLOAD_DIR, task_id)
     os.makedirs(job_upload_dir, exist_ok=True)
@@ -45,7 +42,7 @@ async def create_dataset_endpoint(
     await db.commit()
     await db.refresh(job)
 
-    process_dataset_task.delay(job_id=job.id)
+    process_dataset_task.delay(job_id=job.id) #This dispatches the request to the Celery worker 
     
     return {"message": "Dataset generation has started.", "task_id": task_id, "job_id": job.id}
 
