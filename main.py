@@ -5,6 +5,7 @@ from sqlalchemy import select
 from src.database import AsyncSessionLocal
 from src.models import Job
 from worker import process_dataset_task
+from typing import List
 import os
 import uuid 
 
@@ -22,7 +23,7 @@ RESULT_DIR = "/tmp/src_results"
 @app.post("/create-dataset")
 async def create_dataset_endpoint(
     recipe: str = Form(...),
-    file: UploadFile = File(...),
+    files: List[UploadFile] = File(...),
     db: AsyncSession = Depends(get_db)
 ):
     task_id = str(uuid.uuid4())
@@ -33,9 +34,10 @@ async def create_dataset_endpoint(
     os.makedirs(job_upload_dir, exist_ok=True)
     
     # (Simplified: assumes single file upload for now, zip logic can be re-added)
-    file_path = os.path.join(job_upload_dir, file.filename)
-    with open(file_path, "wb") as buffer:
-        buffer.write(await file.read())
+    for file in files:
+        file_path = os.path.join(job_upload_dir, file.filename)
+        with open(file_path, "wb") as buffer:
+            buffer.write(await file.read())
 
     # Save job to DB and send to worker
     db.add(job)
