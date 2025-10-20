@@ -17,8 +17,8 @@ async def get_db():
         yield session
 
 # Define storage paths (must match worker)
-UPLOAD_DIR = "/tmp/src_uploads"
-RESULT_DIR = "/tmp/src_results"
+UPLOAD_DIR = "/tmp/uploads"
+RESULT_DIR = "/tmp/results"
 
 @app.post("/create-dataset")
 async def create_dataset_endpoint(
