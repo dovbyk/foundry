@@ -26,7 +26,7 @@ async def create_dataset_endpoint(
     db: AsyncSession = Depends(get_db)
 ):
     task_id = str(uuid.uuid4())
-    job = Job(task_id=task_id, status="PENDING")
+    job = Job(task_id=task_id, status="PENDING", recipe=recipe)    
     
     # Save uploaded file(s) to a temporary directory named after the task_id
     job_upload_dir = os.path.join(UPLOAD_DIR, task_id)
