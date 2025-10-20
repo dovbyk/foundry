@@ -17,8 +17,8 @@ celery_app = Celery('tasks', broker='redis://localhost:6379/0')
 AsyncSessionLocal = async_sessionmaker(engine, expire_on_commit=False)
 
 # Define storage paths
-UPLOAD_DIR = "/tmp/foundry_uploads"
-RESULT_DIR = "/tmp/foundry_results"
+UPLOAD_DIR = "/tmp/uploads"
+RESULT_DIR = "/tmp/results"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 os.makedirs(RESULT_DIR, exist_ok=True)
 
