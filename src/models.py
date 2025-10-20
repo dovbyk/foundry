@@ -14,4 +14,5 @@ class Job(Base):
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
     result_file_path = Column(String, nullable=True)
     error_message = Column(Text, nullable=True)
+    recipe = Column(String, nullable=False)
 
