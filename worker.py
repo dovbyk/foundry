@@ -45,8 +45,8 @@ def process_dataset_task(self, job_id: int):
                         files_to_process.append({"filename": filename, "content": f.read()})
                 
                 # 3. Run the LangGraph pipeline
-                final_state = await run_graph(files_to_process, job.task_id) # Assuming recipe is stored in task_id for now
-                #4. Save the result
+                final_state = await run_graph(files_to_process, job.recipe)         
+                
                 result_filename = f"{job.task_id}.jsonl"
                 result_file_path = os.path.join(RESULT_DIR, result_filename)
                 with open(result_file_path, "w") as f:
